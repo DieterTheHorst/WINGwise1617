@@ -1,0 +1,57 @@
+package pACKAGE1;
+
+public class QUICKSORT {
+	public static void main(String[] args){
+		int[] a = new int[30];						//Sortierarray
+		
+		for(int i=0; i<=a.length-1;i++ ){
+			a[i]= (int) (Math.random()*100)+1;		//Befüllung mit zufälligen Zahlen 1-100
+			System.out.println(a[i]);				//unsortierte Ausgabe
+		}	
+		int low = 0;							
+		int high = a.length-1;
+		
+		quicksort(a,low,high);
+		for(int i=0; i<a.length;i++ ){
+			System.out.println(a[i]);				//sortierte Ausgabe
+			}
+		
+	}
+		public static void quicksort(int[] x,int l, int h){
+			if(x==null || x.length ==0){			//Prüfung, abbruch wenn leeres array
+				return;
+			}
+			
+			if(l>=h){								 //Prüfung, abbruch wenn unmögliche Variablen
+				return;
+			}
+			
+			int m =l+(h-l)/2;						//Halbierung des Arrays, Sortiereung erfolgt dann hälftenweise.
+			int p =x[m];							//Setzten des "pivot-Point" = mittlere Zahl des Arrays
+				
+			int i =l, j=h;							//Setzen der Zählervariablen, (Multiple deklaration in einer Zeile)
+			while (i<=j){						
+				while(x[i]<p){						//solange die Array-zahl kleiner ist als die pivot-zahl, zähler plus 1
+					i++;
+				}
+				while(x[j]>p){						//solange die Arrayzahl größer ist als die pivot-zahl, zähler minus 1
+					j--;
+				}
+				if(i<=j){							//bei beidseitiger Annäherung der Zähler: Tausch der beiden Array-zahlen
+					int temp=x[i];				
+					x[i]=x[j];
+					x[j]=temp;
+					i++;						
+					j--;
+				}
+			}if(l<j){							    //rekursives Sortieren der Beiden Hälften, solange bis jede Hälfte nur noch eine Zahl ist
+				quicksort(x,l,j);
+			}
+			if(h>i){
+				quicksort(x,i,h);
+				
+			}
+			
+			
+	}
+}
